@@ -40,11 +40,33 @@ const theProblem = {
   // kaprekarsConstantProblem.digitSort("0010") returns 1
 
   kaprekarsConstant: (string) => {
+    let firstnum = string;
+    let secondNum;
+    let count = 0;
 
-    // Write your code here.
-    // Recursion is your friend. 🙂
+    function subtract(num) {
+      if(num.length === 2) {
+        num = String(num * 100);
+      } else if(num.length === 3) {
+        num = String(num * 10);
+      }
 
-  },
+      let low = num.split('').sort().join('');
+      let high = num.split('').sort((a, b) => b - a).join('');
+
+      secondNum = String(high - low);
+    }
+
+    subtract(firstnum);
+
+    while(secondNum != firstnum) {
+      count++;
+      firstnum = secondNum;
+      subtract(firstnum);
+    }
+     
+    return count;
+  }
 }
 
 module.exports = theProblem;
