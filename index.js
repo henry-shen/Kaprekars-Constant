@@ -60,6 +60,7 @@ const theProblem = {
     subtract(firstnum);
 
     while(secondNum != firstnum) {
+      console.log(firstnum);
       count++;
       firstnum = secondNum;
       subtract(firstnum);
