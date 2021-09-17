@@ -33,18 +33,30 @@ kaprekarsConstantProblem.kaprekarsConstant("3524") should equal 3 and the functi
 
 const theProblem = {
 
-  // helper function for this problem 🙂
-  digitSort: (string) => Number(string.split('').sort((a,b) => a-b).join('')),
+    // helper function for this problem 🙂
+    digitSort: (string) => Number(string.split('').sort((a,b) => a-b).join('')),
+    
+    // kaprekarsConstantProblem.digitSort("425316") returns 123456
+    // kaprekarsConstantProblem.digitSort("0010") returns 1
   
-  // kaprekarsConstantProblem.digitSort("425316") returns 123456
-  // kaprekarsConstantProblem.digitSort("0010") returns 1
+    digitOrder: (string) => Number(string.toString().split('').reverse().join('')),
 
-  kaprekarsConstant: (string) => {
-
-    // Write your code here.
-    // Recursion is your friend. 🙂
-
-  },
-}
+    kaprekarsConstant: (string) => {
+        
+      // Write your code here.
+      // Recursion is your friend. 🙂
+      let sortedNum = theProblem.digitSort(string)
+      let higherOrder = theProblem.digitOrder(sortedNum)
+      while (higherOrder.toString().length <  4) {
+          higherOrder = Number(higherOrder + '0')
+      }
+      let result = higherOrder - sortedNum
+      if ( result === 6174) {
+        return 1
+      } else {
+        return theProblem.kaprekarsConstant(result.toString())+1
+      }
+    },
+  }
 
 module.exports = theProblem;
